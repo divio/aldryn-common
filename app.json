@@ -1,7 +1,7 @@
 {
 	"name": "Aldryn Common",
 	"description": "Common utitilities",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"url": "https://github.com/aldryn/aldryn-common",
 	"package-name": "aldryn-common",
 	"installed-apps": [
