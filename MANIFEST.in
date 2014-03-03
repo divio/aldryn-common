@@ -1,0 +1,3 @@
+include LICENSE.txt
+recursive-include aldryn_common/templates *
+recursive-exclude * *.pyc
