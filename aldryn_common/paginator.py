@@ -17,7 +17,7 @@ __all__ = (
 
 class ExPaginator(Paginator):
     """
-    Adds a ``softlimit`` option to ``page()``. If True, querying a
+    Adds a ``softlimit`` option to the class. If True, querying a
     page number larger than max. will not fail, but instead return the
     last available page.
 
@@ -26,12 +26,16 @@ class ExPaginator(Paginator):
     possibly see links to invalid pages at some point which we wouldn't
     want to fail as 404s.
 
+    Can be set by passing either 'softlimit' to the the constructor or setting
+    settings.ALDRYN_COMMON_PAGINATION_SOFTLIMIT
+
     >>> items = range(1, 1000)
     >>> paginator = ExPaginator(items, 10)
     >>> paginator.page(1000)
     Traceback (most recent call last):
     InvalidPage: That page contains no results
-    >>> paginator.page(1000, softlimit=True)
+    >>> paginator.softlimit = True
+    >>> paginator.page(1000)
     <Page 100 of 100>
 
     # [bug] graceful handling of non-int args
@@ -39,6 +43,11 @@ class ExPaginator(Paginator):
     Traceback (most recent call last):
     InvalidPage: That page number is not an integer
     """
+
+    def __init__(self, *args, **kwargs):
+        self.softlimit = kwargs.pop('softlimit', getattr(settings, 'ALDRYN_COMMON_PAGINATION_SOFTLIMIT', True))
+        super(ExPaginator, self).__init__(*args, **kwargs)
+
     def _ensure_int(self, num, e):
         # see Django #7307
         try:
@@ -46,13 +55,13 @@ class ExPaginator(Paginator):
         except ValueError:
             raise e
 
-    def page(self, number, softlimit=False):
+    def page(self, number):
         try:
             return super(ExPaginator, self).page(number)
         except InvalidPage, e:
             number = self._ensure_int(number, e)
-            if number > self.num_pages and softlimit:
-                return self.page(self.num_pages, softlimit=False)
+            if number > self.num_pages and self.softlimit:
+                return self.page(self.num_pages)
             else:
                 raise e
 
