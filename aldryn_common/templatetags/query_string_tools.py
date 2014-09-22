@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# original copy from https://github.com/divio/verit-project/blob/9bde63c4733acb43d7e78a50846fb7f02e2f3116/py_src/project/templatetags/query_string_tools.py
-
 import re
+
 from django.template import Library, Node, TemplateSyntaxError
 from django.http import QueryDict
 from django.utils.encoding import smart_str
 
 register = Library()
+
 
 @register.tag
 def query_string(parser, token):
