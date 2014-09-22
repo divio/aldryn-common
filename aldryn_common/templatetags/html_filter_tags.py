@@ -42,3 +42,10 @@ def html_make_anchortag(value, arg=None, safe=False):
 @register.filter()
 def safe_html_make_anchortag(value, arg=None):
     return html_make_anchortag(value, arg=arg, safe=True)
+
+
+@register.filter()
+def html_make_mail_anchortag(value, arg=None):
+    email = value
+    label = arg or email
+    return mark_safe(u'''<a href="mailto:%s">%s</a>''' % (email, label))
