@@ -1,4 +1,4 @@
 include LICENSE.txt
 recursive-include aldryn_common/templates *
-recursive-include aldryn_common/templatetags *
+recursive-include aldryn_common/boilerplates *
 recursive-exclude * *.pyc

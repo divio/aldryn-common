@@ -2,7 +2,9 @@
 from setuptools import setup, find_packages
 from aldryn_common import __version__
 
-REQUIREMENTS = []
+REQUIREMENTS = [
+    'aldryn-boilerplates',
+]
 
 CLASSIFIERS = [
     'Development Status :: 2 - Pre-Alpha',
