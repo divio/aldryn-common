@@ -1,0 +1,17 @@
+{% load i18n query_string_tools %}
+
+<nav class="aldryn aldryn-common aldryn-common-pagination">
+    <h2 class="sr-only">{% trans "Pagination" %}</h2>
+    <ul class="pagination">
+        {{ page.selected }}
+        {% if page.has_previous %}<li><a href="{{ request.path }}{% query_string request.GET page=page.previous_page_number %}">{% trans "Previous" %}</a></li>{% endif %}
+        {% for num in page.page_range %}
+            {% if not num %}
+                <li class="disabled"><span>...</span></li>
+            {% else %}
+                <li{% if page.active %} class="active"{% endif %}><a href="{{ request.path }}{% query_string request.GET page=num %}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if page.has_next %}<li><a href="{{ request.path }}{% query_string request.GET page=page.next_page_number %}">{% trans "Next" %}</a></li>{% endif %}
+    </ul>
+</nav>
