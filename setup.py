@@ -4,6 +4,7 @@ from aldryn_common import __version__
 
 REQUIREMENTS = [
     'aldryn-boilerplates',
+    'django-sortedm2m',
 ]
 
 CLASSIFIERS = [
