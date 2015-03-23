@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 import re
+try:
+    basestring
+    unicode
+except NameError:  # Python 3
+    basestring = str
+    unicode = str
 
 from django.template import Library, Node, TemplateSyntaxError
 from django.http import QueryDict
