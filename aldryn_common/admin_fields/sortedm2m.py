@@ -114,3 +114,11 @@ class SortedM2MModelField(sortedm2m.fields.SortedManyToManyField):
         }
         defaults.update(kwargs)
         return super(SortedM2MModelField, self).formfield(**defaults)
+
+try:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], [
+        "^aldryn_common\.admin_fields\.sortedm2m\.SortedM2MModelField"])
+except:
+    # If South not installed, then we really don't need to have done this.
+    pass
