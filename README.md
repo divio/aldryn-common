@@ -1,6 +1,7 @@
 # Aldryn Common
 
-Aldryn Common is a library of helpful utilities for packages in the [Aldryn](http://aldryn.com) ecosystem.
+Aldryn Common is a library of helpful utilities for packages in the [Aldryn](http://aldryn.com) ecosystem, and is
+also aimed at developers of [django CMS](http://django-cms.org) projects.
 
 It's installed by default in your Aldryn project - you don't need to do anything to install it - and numerous other
 Addons will make use of the tools it provides. Feel free to make use of them in your own projects.
