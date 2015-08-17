@@ -298,8 +298,5 @@ class QuerySetDiggPaginator(DiggPaginator, QuerySetPaginator):
     pass
 
 
-def paginate_by(fallback=None):
-    try:
-        return settings.ALDRYN_COMMON_PAGINATOR_PAGINATE_BY
-    except AttributeError:
-        return fallback or 15
+def paginate_by(fallback=15):
+    return getattr(settings, 'ALDRYN_COMMON_PAGINATOR_PAGINATE_BY', fallback)
