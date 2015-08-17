@@ -2,6 +2,7 @@
 # original copy from https://djangosnippets.org/snippets/773/
 
 import math
+import functools
 
 from django.conf import settings
 from django.core.paginator import Paginator, QuerySetPaginator, Page, InvalidPage
@@ -218,14 +219,14 @@ class DiggPaginator(ExPaginator):
             self.num_pages, self.body, self.tail, self.padding, self.margin
 
         # put active page in middle of main range
-        main_range = map(int, [
+        main_range = list(map(int, [
             math.floor(number-body/2.0)+1,  # +1 = shift odd body to right
-            math.floor(number+body/2.0)])
+            math.floor(number+body/2.0)]))
         # adjust bounds
         if main_range[0] < 1:
-            main_range = map(abs(main_range[0]-1).__add__, main_range)
+            main_range = list(map(abs(main_range[0]-1).__add__, main_range))
         if main_range[1] > num_pages:
-            main_range = map((num_pages-main_range[1]).__add__, main_range)
+            main_range = list(map((num_pages-main_range[1]).__add__, main_range))
 
         # Determine leading and trailing ranges; if possible and appropriate,
         # combine them with the main range, in which case the resulting main
@@ -272,10 +273,10 @@ class DiggPaginator(ExPaginator):
 
         # make the result of our calculations available as custom ranges
         # on the ``Page`` instance.
-        page.main_range = range(main_range[0], main_range[1]+1)
+        page.main_range = list(range(main_range[0], main_range[1]+1))
         page.leading_range = leading
         page.trailing_range = trailing
-        page.page_range = reduce(lambda x, y: x+((x and y) and [False])+y,
+        page.page_range = functools.reduce(lambda x, y: x+((x and y) and [False])+y,
             [page.leading_range, page.main_range, page.trailing_range])
 
         page.__class__ = DiggPage
