@@ -27,10 +27,12 @@ class DateRangeNode(template.Node):
             return ''
 
         if start_date.year != end_date.year:
-            result = u"%s – %s" % (format(start_date, 'd.m.Y'), format(end_date, 'd.m.Y'))
+            result = u"%s – %s" % (
+                format(start_date, 'd.m.Y'), format(end_date, 'd.m.Y'))
             show_year = False
         elif start_date.month != end_date.month:
-            result = u"%s – %s" % (format(start_date, 'd.m.'), format(end_date, 'd.m.'))
+            result = u"%s – %s" % (
+                format(start_date, 'd.m.'), format(end_date, 'd.m.'))
         elif start_date.day != end_date.day:
             result = u"%s.–%s.%s." % (
                 format(start_date, 'd'),
@@ -47,7 +49,8 @@ class DateRangeNode(template.Node):
 def do_date_range(parser, token):
     chunks = token.split_contents()
     if len(chunks) not in (2, 3, 4):
-        raise template.TemplateSyntaxError, "%r tag requires one or two arguments" % token.contents.split()[0]
+        raise template.TemplateSyntaxError(
+            "%r tag requires one or two arguments" % token.contents.split()[0])
     return DateRangeNode(
         chunks[1],
         chunks[2] if len(chunks) > 2 else chunks[1],
