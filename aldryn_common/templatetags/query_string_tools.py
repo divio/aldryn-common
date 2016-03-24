@@ -5,6 +5,8 @@ from django.template import Library, Node, TemplateSyntaxError
 from django.http import QueryDict
 from django.utils.encoding import smart_str
 
+import six
+
 register = Library()
 
 
@@ -107,7 +109,7 @@ class QueryStringNode(Node):
             qdict = QueryDict(None, mutable=True)
         elif isinstance(qdict, QueryDict):
             qdict = qdict.copy()
-        elif isinstance(qdict, basestring):
+        elif isinstance(qdict, six.string_types):
             if qdict.startswith('?'):
                 qdict = qdict[1:]
             qdict = QueryDict(qdict, mutable=True)
@@ -125,9 +127,9 @@ class QueryStringNode(Node):
                     # membership works for numbers.
                     if isinstance(v, (list, tuple)):
                         for e in v:
-                            qdict.appendlist(k,unicode(e))
+                            qdict.appendlist(k, six.text_type(e))
                     else:
-                        qdict.appendlist(k, unicode(v))
+                        qdict.appendlist(k, six.text_type(v))
             except:
                 # Wrong data structure, qdict remains empty.
                 pass
@@ -142,7 +144,7 @@ class QueryStringNode(Node):
         # Deal with lists only.
         if not isinstance(val, (list, tuple)):
             val = [val]
-        val = [unicode(v) for v in val]
+        val = [six.text_type(v) for v in val]
        # Remove
         if op == '-':
             for v in val:
