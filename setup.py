@@ -18,6 +18,10 @@ CLASSIFIERS = [
     'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     'Topic :: Software Development',
     'Topic :: Software Development :: Libraries :: Application Frameworks',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3.3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
 ]
 
 setup(
@@ -33,5 +37,6 @@ setup(
     install_requires=REQUIREMENTS,
     classifiers=CLASSIFIERS,
     include_package_data=True,
-    zip_safe=False
+    zip_safe=False,
+    test_suite='tests',
 )
