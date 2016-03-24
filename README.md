@@ -1,5 +1,7 @@
 # Aldryn Common
 
+![build status](https://img.shields.io/travis/aldryn/aldryn-common.svg) ![coverage](https://img.shields.io/coveralls/aldryn/aldryn-common.svg) ![PyPI version](https://img.shields.io/pypi/v/aldryn-common.svg)
+
 Aldryn Common is a library of helpful utilities for packages in the [Aldryn](http://aldryn.com) ecosystem, and is
 also aimed at developers of [django CMS](http://django-cms.org) projects.
 

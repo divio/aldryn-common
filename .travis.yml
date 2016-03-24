@@ -1,0 +1,34 @@
+language: python
+python: 3.5
+
+# Use container based infrastructure
+sudo: false
+
+env:
+#  - TOX_ENV=flake8
+  - TOX_ENV=py35-dj19
+  - TOX_ENV=py35-dj18
+  - TOX_ENV=py34-dj19
+  - TOX_ENV=py34-dj18
+  - TOX_ENV=py33-dj19
+  - TOX_ENV=py33-dj18
+  - TOX_ENV=py27-dj19
+  - TOX_ENV=py27-dj18
+  - TOX_ENV=py34-dj17
+  - TOX_ENV=py33-dj17
+  - TOX_ENV=py27-dj17
+  - TOX_ENV=py33-dj16
+  - TOX_ENV=py27-dj16
+
+install:
+  - pip install --upgrade pip
+  - pip install tox coveralls
+
+script:
+  - tox -e $TOX_ENV
+
+after_success:
+  - coveralls
+
+notifications:
+  webhooks: http://addons.us-iad-rs.aldryn.io/en/travis-endpoint/
