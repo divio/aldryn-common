@@ -8,11 +8,11 @@
     <ul>
     {# TODO: the onclick is just a hacky workaround to show the popup. We should have our own js that will close the popup on save as well. #}
     {% for row in selected %}
-        <li><label{{ row.label_for|safe }}>{{ row.rendered_cb }} {{ row.option_label }}</label> <a href="{{ row.admin_url }}" onclick="return showRelatedObjectLookupPopup(this);">details</a></li>
+        <li><label{{ row.label_for|safe }}>{{ row.rendered_cb }} {{ row.option_label }}</label> <a href="{{ row.admin_url }}"  id="popup-id-{{ row.option_value }}" onclick="return showRelatedObjectLookupPopup(this);">details</a></li>
     {% endfor %}
 
     {% for row in unselected %}
-        <li><label{{ row.label_for|safe }}>{{ row.rendered_cb }} {{ row.option_label }}</label> <a href="{{ row.admin_url }}" onclick="return showRelatedObjectLookupPopup(this);">details</a></li>
+        <li><label{{ row.label_for|safe }}>{{ row.rendered_cb }} {{ row.option_label }}</label> <a href="{{ row.admin_url }}"  id="popup-id-{{ row.option_value }}" onclick="return showRelatedObjectLookupPopup(this);">details</a></li>
     {% endfor %}
     </ul>
 
