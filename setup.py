@@ -4,7 +4,7 @@ from aldryn_common import __version__
 
 REQUIREMENTS = [
     'aldryn-boilerplates',
-    'django-sortedm2m>=1.2.2',
+    'django-sortedm2m>=1.2.2,<1.3',
     'six',
 ]
 
