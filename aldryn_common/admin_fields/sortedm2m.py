@@ -1,19 +1,15 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals, absolute_import
+from __future__ import absolute_import, unicode_literals
+
 from itertools import chain
+
 from django import forms
-from django.conf import settings
-from django.core.urlresolvers import reverse, NoReverseMatch
-from django.db.models.query import QuerySet
 from django.template.loader import render_to_string
+from django.urls import NoReverseMatch, reverse
 from django.utils.encoding import force_text
-from django.utils.html import conditional_escape, escape
+from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
-from django.utils.encoding import force_text
-from django.utils.safestring import mark_safe
-import django.db.models
-import django.forms
-from django.conf import settings
+
 import sortedm2m.fields
 import sortedm2m.forms
 
@@ -23,8 +19,10 @@ class SortedM2MWidget(sortedm2m.forms.SortedCheckboxSelectMultiple):
 
     def render(self, name, value, attrs=None, choices=()):
         # TODO: make a pull request to sortedm2m to make it easy to override the template
-        # TODO: make a pull request to sortedm2m to make it easy to add the addtional link to admin (or integrate this whole widget)
-        if value is None: value = []
+        # TODO: make a pull request to sortedm2m to make it easy to add the addtional
+        # TODO: link to admin (or integrate this whole widget)
+        if value is None:
+            value = []
         has_id = attrs and 'id' in attrs
         final_attrs = self.build_attrs(attrs, name=name)
 
@@ -83,7 +81,8 @@ class SortedM2MWidget(sortedm2m.forms.SortedCheckboxSelectMultiple):
             else:
                 unselected.append(item)
 
-        # re-order `selected` array according str_values which is a set of `option_value`s in the order they should be shown on screen
+        # re-order `selected` array according str_values which is a set of `option_value`s in the order they should
+        # be shown on screen
         ordered = []
         for value in str_values:
             for select in selected:
@@ -114,11 +113,3 @@ class SortedM2MModelField(sortedm2m.fields.SortedManyToManyField):
         }
         defaults.update(kwargs)
         return super(SortedM2MModelField, self).formfield(**defaults)
-
-try:
-    from south.modelsinspector import add_introspection_rules
-    add_introspection_rules([], [
-        "^aldryn_common\.admin_fields\.sortedm2m\.SortedM2MModelField"])
-except:
-    # If South not installed, then we really don't need to have done this.
-    pass

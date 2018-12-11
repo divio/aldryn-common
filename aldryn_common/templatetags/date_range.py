@@ -57,4 +57,5 @@ def do_date_range(parser, token):
         chunks[3] if len(chunks) == 4 else False
     )
 
+
 register.tag('date_range', do_date_range)

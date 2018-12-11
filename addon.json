@@ -1,6 +1,6 @@
 {
 	"name": "Aldryn Common",
-	"description": "Common utitilities",
+	"description": "Common utilities",
 	"url": "https://github.com/aldryn/aldryn-common",
 	"package-name": "aldryn-common",
 	"installed-apps": [

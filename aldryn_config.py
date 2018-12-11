@@ -1,5 +1,6 @@
 from aldryn_client import forms
 
+
 class Form(forms.BaseForm):
     paginator_paginate_by = forms.CharField('Paginator: item per page count', required=False)
 
