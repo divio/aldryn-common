@@ -20,14 +20,10 @@ matrix:
       env: DJANGO='dj20'
     - python: 3.6
       env: DJANGO='dj20'
-    - python: 3.7
-      env: DJANGO='dj20'
     # Django 2.1
     - python: 3.5
       env: DJANGO='dj21'
     - python: 3.6
-      env: DJANGO='dj21'
-    - python: 3.7
       env: DJANGO='dj21'
 
 install:
