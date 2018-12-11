@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # original copy from https://djangosnippets.org/snippets/773/
 
-import math
 import functools
+import math
 
 from django.conf import settings
-from django.core.paginator import Paginator, QuerySetPaginator, Page, InvalidPage
-
+from django.core.paginator import (InvalidPage, Page, Paginator,
+                                   QuerySetPaginator)
 
 __all__ = (
     'InvalidPage',
@@ -203,7 +203,7 @@ class DiggPaginator(ExPaginator):
         max_padding = int(math.ceil(self.body/2.0)-1)
         self.padding = kwargs.pop('padding', min(4, max_padding))
         if self.padding > max_padding:
-            raise ValueError('padding too large for body (max %d)'%max_padding)
+            raise ValueError('padding too large for body (max %d)' % max_padding)
         super(DiggPaginator, self).__init__(*args, **kwargs)
 
     def page(self, number, *args, **kwargs):
@@ -212,7 +212,7 @@ class DiggPaginator(ExPaginator):
         """
 
         page = super(DiggPaginator, self).page(number, *args, **kwargs)
-        number = int(number) # we know this will work
+        number = int(number)  # we know this will work
 
         # easier access
         num_pages, body, tail, padding, margin = \
@@ -276,8 +276,10 @@ class DiggPaginator(ExPaginator):
         page.main_range = list(range(main_range[0], main_range[1]+1))
         page.leading_range = leading
         page.trailing_range = trailing
-        page.page_range = functools.reduce(lambda x, y: x+((x and y) and [False])+y,
-            [page.leading_range, page.main_range, page.trailing_range])
+        page.page_range = functools.reduce(
+            lambda x, y: x+((x and y) and [False])+y,
+            [page.leading_range, page.main_range, page.trailing_range]
+        )
 
         page.__class__ = DiggPage
         return page

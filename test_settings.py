@@ -3,8 +3,10 @@
 
 from __future__ import unicode_literals
 
+
 def noop_gettext(s):
     return s
+
 
 gettext = noop_gettext
 
@@ -54,7 +56,7 @@ HELPER_SETTINGS = {
             'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
         }
     },
-    'MIDDLEWARE_CLASSES': [
+    'MIDDLEWARE': [
         'django.middleware.http.ConditionalGetMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -65,9 +67,11 @@ HELPER_SETTINGS = {
     ],
 }
 
+
 def run():
     from djangocms_helper import runner
     runner.run('aldryn_common', extra_args=[])
+
 
 if __name__ == "__main__":
     run()

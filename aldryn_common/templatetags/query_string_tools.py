@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import re
 
-from django.template import Library, Node, TemplateSyntaxError
 from django.http import QueryDict
+from django.template import Library, Node, TemplateSyntaxError
 from django.utils.encoding import smart_str
 
 import six
@@ -92,7 +92,7 @@ class QueryStringNode(Node):
             qdict = None
         # Internally work only with QueryDict
         qdict = self._get_initial_query_dict(qdict)
-        #assert isinstance(qdict, QueryDict)
+        # assert isinstance(qdict, QueryDict)
         for k, op, v in mods:
             qdict.setlist(k, self._process_list(qdict.getlist(k), op, v))
         qstring = qdict.urlencode()
@@ -117,7 +117,7 @@ class QueryStringNode(Node):
             # Accept any old dict or list of pairs.
             try:
                 pairs = qdict.items()
-            except:
+            except Exception:
                 pairs = qdict
             qdict = QueryDict(None, mutable=True)
             # Enter each pair into QueryDict object:
@@ -130,7 +130,7 @@ class QueryStringNode(Node):
                             qdict.appendlist(k, six.text_type(e))
                     else:
                         qdict.appendlist(k, six.text_type(v))
-            except:
+            except Exception:
                 # Wrong data structure, qdict remains empty.
                 pass
         return qdict
@@ -145,7 +145,7 @@ class QueryStringNode(Node):
         if not isinstance(val, (list, tuple)):
             val = [val]
         val = [six.text_type(v) for v in val]
-       # Remove
+        # Remove
         if op == '-':
             for v in val:
                 while v in current_list:

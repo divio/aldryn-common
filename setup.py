@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup, find_packages
 from aldryn_common import __version__
+from setuptools import find_packages, setup
 
 REQUIREMENTS = [
     'aldryn-boilerplates',
-    'django-sortedm2m>=1.2.2,!=1.3.0,!=1.3.1',
+    'django-sortedm2m',
     'six',
 ]
 
@@ -12,6 +12,9 @@ CLASSIFIERS = [
     'Development Status :: 5 - Production/Stable',
     'Environment :: Web Environment',
     'Framework :: Django',
+    'Framework :: Django :: 1.11',
+    'Framework :: Django :: 2.0',
+    'Framework :: Django :: 2.1',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: BSD License',
     'Operating System :: OS Independent',
@@ -20,19 +23,19 @@ CLASSIFIERS = [
     'Topic :: Software Development',
     'Topic :: Software Development :: Libraries :: Application Frameworks',
     'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: 3.3',
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
 ]
 
 setup(
     name='aldryn-common',
     version=__version__,
-    description='Common utitilities',
+    description='Common utilities',
     author='Divio AG',
     author_email='info@divio.ch',
     url='https://github.com/aldryn/aldryn-common',
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests']),
     license='LICENSE.txt',
     platforms=['OS Independent'],
     install_requires=REQUIREMENTS,
