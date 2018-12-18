@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 
 REQUIREMENTS = [
     'aldryn-boilerplates',
-    'django-sortedm2m',
+    'django-sortedm2m==1.5.0',
     'six',
 ]
 
