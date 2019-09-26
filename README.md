@@ -1,3 +1,9 @@
+**Deprecated**
+
+This project is no longer supported.
+
+Divio will undertake no further development or maintenance of this project. If you are interested in  taking responsibility for this project as its maintainer, please contact us via www.divio.com.
+
 # Aldryn Common
 
 ![build status](https://img.shields.io/travis/aldryn/aldryn-common.svg) ![coverage](https://img.shields.io/coveralls/aldryn/aldryn-common.svg) ![PyPI version](https://img.shields.io/pypi/v/aldryn-common.svg)
