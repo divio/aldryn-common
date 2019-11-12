@@ -3,8 +3,9 @@ from aldryn_common import __version__
 from setuptools import find_packages, setup
 
 REQUIREMENTS = [
+    'Django>=1.11',
     'aldryn-boilerplates',
-    'django-sortedm2m',
+    'django-sortedm2m==1.5.0',
     'six',
 ]
 
